@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    
+    stages {
+        // Define your stages here
+        stage('Build') {
+            steps {
+                // Build steps
+            }
+        }
+        stage('Test') {
+            steps {
+                // Test steps
+            }
+        }
+        // Add more stages as needed
+    }
+    
+    post {
+        always {
+            // Post-build steps
+            slackSend(channel: '#your-channel', message: "Build ${currentBuild.result}: ${env.BUILD_URL}")
+        }
+    }
+}
